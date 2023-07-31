@@ -22,16 +22,17 @@ module.exports = {
     // get thoughts
     async getThoughts(req, res) {
         try {
-            const thoughts = await Thought.find().select("-__v").populate({path: "reactions", select: "-__v"})
+            const thoughts = await Thought.find()
             res.json(thoughts)
         } catch (err) {
+            console.log(err)
             return res.status(500).json(err)
         }
     },
     // get thought
     async getSingleThought(req, res) {
         try {
-            const thought = await Thought.findOne({ _id: req.params.thoughtId }).select("-__v").populate({path: "reactions", select: "-__v"})
+            const thought = await Thought.findOne({ _id: req.params.thoughtId })
 
             if (!thought) {
                 return res.status(400).json({ message: "Cannot find thought"})

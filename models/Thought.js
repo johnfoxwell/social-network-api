@@ -38,7 +38,7 @@ function getDate(date) {
 thoughtSchema
     .virtual("reactionCount")
     .get(function() {
-        return this.reactions.length;
+        return this.reactionBody.length;
     })
 
 const Thought = model("thought", thoughtSchema)
